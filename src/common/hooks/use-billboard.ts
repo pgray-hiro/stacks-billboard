@@ -9,6 +9,7 @@ export const useBillboard = () => {
   const client = useSmartContractApi();
   const [contractAddress, contractName] = useBillboardContract();
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
   const getMessage = useCallback(() => {
@@ -25,21 +26,19 @@ export const useBillboard = () => {
     client
       .callReadOnlyFunction(request)
       .then((response) => {
+        setError("");
+
         if (response.okay && response.result) {
           const msg = cvToString(hexToCV(response.result)).slice(2, -1);
           setMessage(msg);
         }
-        if (loading) {
-          setLoading(false);
-        }
+        setLoading(false);
       })
       .catch((error) => {
-        console.log(error);
-        if (loading) {
-          setLoading(false);
-        }
+        setLoading(false);
+        setError(error.message);
       });
-  }, [client, contractAddress, contractName, loading]);
+  }, [client, contractAddress, contractName]);
 
   // Run the getMessage function at load to get the message from the contract
   useEffect(getMessage, [getMessage]);
@@ -47,5 +46,5 @@ export const useBillboard = () => {
   // Poll the Stacks API every 30 seconds looking for changes
   useInterval(getMessage, 30000);
 
-  return [message, loading];
+  return [message, loading, error];
 };
