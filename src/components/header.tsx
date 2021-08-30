@@ -8,7 +8,7 @@ const StyledHeader = tw.header`relative flex flex-wrap items-center justify-betw
 const Header: React.FC<{}> = () => {
   return (
     <StyledHeader>
-      <Text tw="text-2xl font-bold">Billboard</Text>
+      <Text tw="text-3xl font-bold">Stacks Billboard</Text>
     </StyledHeader>
   );
 };
