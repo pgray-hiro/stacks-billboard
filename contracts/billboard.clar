@@ -4,7 +4,7 @@
 (define-constant ERR_STX_TRANSFER   u0)
 
 ;; data vars
-(define-data-var billboard-message (string-utf8 500) u"Hello World!")
+(define-data-var billboard-message (string-utf8 500) u"Hello, world!")
 (define-data-var price uint u100)
 
 ;; public functions
