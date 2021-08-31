@@ -6,20 +6,32 @@ This project is an example full-stack application that uses Clarity smart contra
 
 Make sure you have the [dependencies](#dependencies) installed.
 
+Clone this repository to your local machine and install dependencies:
+
+```sh
+git clone https://github.com/pgray-hiro/stacks-billboard && cd stacks-billboard
+yarn install
+```
+
 To run this app locally against the Clarinet DevNet, you'll need to have two terminal windows open (or use a virtual terminal like screen). With the repository cloned locally, in the first terminal run the following command from the root of the local repository:
 
 ```sh
 clarinet integrate
 ```
 
+Note that while you can run the frontend before the local DevNet is fully launched, the frontend will display an error message from the local API. You should wait until the `stacks-node`, `stacks-api`, and `bitcoin-node` containers all have a green status in the DevNet dashboard before launching the frontend.
+
+![Healthy DevNet demo](./public/devnet-healthy-demo.png)
+
 In the second terminal, start the frontend by running the following commands from the root of the repo:
 
 ```sh
-yarn install
 yarn run dev
 ```
 
-Once the local DevNet is running, the billboard message will be displayed in the React frontend.
+If the local DevNet is running, the React frontend will display the message `Hello, world!`.
+
+![Billboard demo](./public/billboard-demo.png)
 
 ## Dependencies
 
